@@ -6,7 +6,7 @@ const NavLinks = () => {
     return (
         <>
 
-            <li>
+            {/* <li>
                 <details>
                     <summary> Navlinks </summary>
                     <ul className="p-2  w-40">
@@ -14,9 +14,10 @@ const NavLinks = () => {
                         <li><a>Submenu 2</a></li>
                     </ul>
                 </details>
-            </li>
+            </li> */}
             <SignedIn>
-                <li> <Link href={`/mycompanies`}>Companies</Link> </li>
+                <li> <Link href={`/mycompanies`}>My Companies</Link> </li>
+                <li> <Link href={`/employee`}>Employed</Link> </li>
                 <li> <Link href={`/createcompany`}>+ Company</Link> </li>
                 <li> <Link href={`/createdepartment`}>+ Department</Link> </li>
                 <li> <Link href={`/user`}> User</Link> </li>

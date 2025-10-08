@@ -20,9 +20,11 @@ export default async function Home() {
         {JSON.stringify(user, null, 10)}
       </pre> */}
       <pre className=" text-xs text-amber-700 tracking-widest">
+        authUser:
         {JSON.stringify(authUser, null, 10)}
       </pre>
       <pre className=" text-xs text-emerald-800 tracking-widest">
+        clerkUser:
         {JSON.stringify(clerkUser, null, 10)}
       </pre>
 

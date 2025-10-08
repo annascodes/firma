@@ -1,20 +1,21 @@
 'use client'
 import React, { use, useEffect, useState } from 'react'
-import { useApiReq } from '../../../../../../../lib/hooks/useApiReq';
+
 import { type Company, type Department, type Project, type Task, type User } from '@prisma/client';
-import BasicIcons from '../../../../../../../components/BasicIcons';
-import AddTaskModal from '../../../../../../../components/task/AddTaskModal';
+import BasicIcons from 'components/BasicIcons';
+import AddTaskModal from 'components/task/AddTaskModal';
 import moment from 'moment';
-import TaskPriority from '../../../../../../../components/task/TaskPriority';
-import TaskStatus from '../../../../../../../components/task/TaskStatus';
+import TaskPriority from 'components/task/TaskPriority';
+import TaskStatus from 'components/task/TaskStatus';
 import Link from 'next/link';
-import ShowTaskInModal from '../../../../../../../components/task/ShowTaskInModal';
+import ShowTaskInModal from 'components/task/ShowTaskInModal';
+import { useApiReq } from 'lib/hooks/useApiReq';
 
 
 
 
 type PropType = {
-    params: Promise<{ projectId: string }>
+    projectId: string;
 }
 type TaskWithRelations = Task & {
     assignee: User
@@ -26,8 +27,8 @@ type ProjectWithRelations = Project & {
     tasks: TaskWithRelations[];
 }
 
-const Page = ({ params }: PropType) => {
-    const { projectId } = use(params);
+const FullProjectPage = ({ projectId }: PropType) => {
+    // const { projectId } = use(params);
     const [project, setProject] = useState<ProjectWithRelations | null>(null);
     const [tasks, setTasks] = useState<TaskWithRelations[]>([])
     const [view, setView] = useState('listView')
@@ -177,6 +178,6 @@ const Page = ({ params }: PropType) => {
     )
 }
 
-export default Page;
+export default FullProjectPage;
 
 

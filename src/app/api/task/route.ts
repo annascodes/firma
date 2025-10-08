@@ -4,7 +4,7 @@ import { db } from "../../../../lib/db"
 import moment from "moment"
 
 export async function POST(req: Request) {
-    const { title, desc, due, projectId } = await req.json()
+    const { title, desc, due, projectId, assignTo } = await req.json()
     const { userId } = await auth()
     if (!userId) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     const user = await db.user.findUnique({ where: { clerkId: userId } })
@@ -23,7 +23,7 @@ export async function POST(req: Request) {
                 description: desc,
                 dueAt,
                 projectId: projectId,
-                assigneeId: user.id
+                assigneeId: assignTo
             },
             include:{
                 assignee: {

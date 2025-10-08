@@ -38,12 +38,10 @@ import { LuTrash2 } from "react-icons/lu";
 import { LuSearch } from "react-icons/lu";
 import { LuSendHorizontal } from "react-icons/lu";
 import { RiUserReceived2Line } from "react-icons/ri";
-
-
-
-
-
-
+import { FaCrown } from "react-icons/fa";
+import { FiShield, FiUser, FiEye } from "react-icons/fi";
+import { HiOutlineUserGroup } from "react-icons/hi2";
+import { LuArrowRight } from "react-icons/lu";
 
 
 
@@ -80,6 +78,13 @@ const labelAndIcons = {
     search: LuSearch,
     send:LuSendHorizontal,
     joinReq: RiUserReceived2Line,
+    owner: FaCrown,
+    admin: FiShield,
+    manager: HiOutlineUserGroup,
+    member: FiUser,
+    guest: FiUser,
+    arrowRight: LuArrowRight
+
 
 
 
