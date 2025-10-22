@@ -2,7 +2,7 @@ import EmployeeSideBar from 'components/employee/EmployeeSideBar';
 import React from 'react'
 type PropType = {
     children: React.ReactNode;
-    params:  {companyId: string}
+    params:  Promise<{companyId: string}>
 }
 
 const layout = async ({children, params}:PropType) => {
