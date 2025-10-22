@@ -5,7 +5,7 @@ import CompanySidebar from '../../../../components/company/CompanySidebar';
 import CompSidebarDrawer from 'components/company/CompSidebarDrawer';
 
 type LayoutPropTypes = {
-  params: { companyId: string };
+  params:Promise<{companyId: string }> ;
   children: React.ReactNode;
 }
 const Layout = async ({ children, params }: LayoutPropTypes) => {
