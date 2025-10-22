@@ -42,6 +42,17 @@ import { FaCrown } from "react-icons/fa";
 import { FiShield, FiUser, FiEye } from "react-icons/fi";
 import { HiOutlineUserGroup } from "react-icons/hi2";
 import { LuArrowRight } from "react-icons/lu";
+import { LuPanelLeftOpen } from "react-icons/lu";
+import { LuGrid2X2Plus } from "react-icons/lu";
+import { LuPaperclip } from "react-icons/lu";
+import { FaFilePdf } from "react-icons/fa6";
+import { LuImage } from "react-icons/lu";
+import { LuFileType } from "react-icons/lu";
+import { TbFileTypeDocx } from "react-icons/tb";
+import { PiMicrosoftWordLogo } from "react-icons/pi";
+import { FiPlus } from "react-icons/fi";
+import { TbUsersGroup } from "react-icons/tb";
+
 
 
 
@@ -60,7 +71,7 @@ const labelAndIcons = {
     assignee: LuFileInput,
     calender: LuCalendarDays,
     arrowDown: MdKeyboardArrowDown,
-    plus: TiPlus,
+    plus: FiPlus,
     normal: LuBatteryMedium,
     low: LuBatteryLow,
     high: LuBatteryFull,
@@ -83,9 +94,18 @@ const labelAndIcons = {
     manager: HiOutlineUserGroup,
     member: FiUser,
     guest: FiUser,
-    arrowRight: LuArrowRight
-
-
+    arrowRight: LuArrowRight,
+    sidebar: LuPanelLeftOpen,
+    addDepartment: LuGrid2X2Plus,
+    attachment: LuPaperclip,
+    // attachment file icons --starts
+    pdf: FaFilePdf,
+    img: LuImage,
+    txt: LuFileType,
+    docx: TbFileTypeDocx,
+    doc: PiMicrosoftWordLogo,
+    // attachment file icons --ends
+    users: TbUsersGroup,
 
 
 }

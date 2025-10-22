@@ -1,36 +1,58 @@
-import React from 'react'
+'use client'
+import React, { useEffect, useState } from 'react'
 import BasicIcons from '../BasicIcons';
-import type { Task, User } from '@prisma/client';
+import type { Attachment, Task, User } from '@prisma/client';
 import AddTaskModal from './AddTaskModal';
 import TaskPriority from './TaskPriority';
 import TaskStatus from './TaskStatus';
 import moment from 'moment';
 import DeletePermit from '../DeletePermit';
+import AttachmentUploader from 'components/AttachmentUploader';
+import AttachmentFile from 'components/AttachmentFile';
 
 type TaskWithRelations = Task & {
-    assignee: User
+    assignee: User;
+    attachments?: Attachment[]
 }
+type PropType = { task: TaskWithRelations; isAdmin?: boolean; companyId: string, isAssignee: boolean }
 
-const ShowTaskInModal = ({ task }: { task: TaskWithRelations }) => {
-    const modalId = `${task.id}-showTaskInModal`
+const ShowTaskInModal = ({ task, isAdmin = false, companyId, isAssignee }: PropType) => {
+    const modalId = `${task.id}-showTaskInModal`;
+    const [attachments, setAttachments] = useState<Attachment[]>([])
+
+
+    useEffect(() => {
+        if (task && task.attachments) {
+            setAttachments(task.attachments)
+        }
+    }, [task])
 
     return (
         <div>
             {/* Open the modal using document.getElementById('ID').showModal() method */}
             <button className="hover:bg-gray-200 px-1 rounded-md duration-200 font-bold text-xl cursor-pointer" onClick={() => {
                 const modal = document.getElementById(modalId) as HTMLDialogElement | null;
-                modal?.showModal()
+                if (isAssignee) {
+                    modal?.showModal()
+                }
+
             }}>
                 {task.title.length > 25 ? `${task.title.slice(0, 25)} ...` : task.title}
             </button>
             <dialog id={modalId} className="modal">
-                <div className="modal-box border-4 border-neutral-800 max-w-4xl">
-                    <div className='flex justify-end gap-0 items-center mb-3'>
-                        <AddTaskModal preBuilt={task} id={task.id} projectId={task.projectId} />
+                <div className="modal-box border-0 border-neutral-800 max-w-4xl">
+                    {
+                        isAdmin &&
 
-                        <DeletePermit id={task.id} />
+                        <>
+                            <div className='flex justify-end gap-0 items-center mb-3'>
+                                <AddTaskModal companyId={companyId} preBuilt={task} id={task.id} projectId={task.projectId} />
 
-                    </div>
+                                <DeletePermit id={task.id} />
+
+                            </div>
+                        </>
+                    }
                     <div className='flex justify-between items-center'>
 
                         <div className="font-bold text-lg flex item-center gap-2">
@@ -78,7 +100,28 @@ const ShowTaskInModal = ({ task }: { task: TaskWithRelations }) => {
                             <BasicIcons label='info' />
                             <p>{task.description} </p>
                         </div>
-                        
+
+                        <div className='flex items-center  gap-2'>
+                            <BasicIcons label='attachment' />
+                            {attachments.length === 0 && <span className='opacity-40'>no attachment</span>}
+                            <div className='flex items-center flex-wrap gap-2 '>
+                                {attachments.map(a => {
+                                    return (
+                                        <AttachmentFile key={a.id} attachment={a} />
+                                    )
+                                })}
+                            </div>
+                        </div>
+
+                        {isAdmin &&
+                            <div className='flex items-center gap-2 mt-10'>
+                                {/* <BasicIcons label='attachment' /> */}
+                                <AttachmentUploader taskId={task.id} setAttachments={setAttachments} />
+                            </div>
+                        }
+
+                       
+
                         {/* <pre className='text-xs tracking-widest'>
                             {JSON.stringify(task, null, 10)}
                         </pre> */}

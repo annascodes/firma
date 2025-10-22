@@ -5,7 +5,7 @@ import { RiMenu4Line } from "react-icons/ri";
 
 const SideDrawer = () => {
     return (
-        <div>
+        <div className=' bg-white'>
             <div className="drawer  ">
                 <input id="my-drawer" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content">

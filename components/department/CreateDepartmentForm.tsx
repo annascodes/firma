@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import HeadingTag from '../HeadingTag'
 import { useApiReq } from '../../lib/hooks/useApiReq'
 import type { Company } from '@prisma/client'
@@ -9,35 +9,64 @@ type selectCompType = {
     CompanyName: string;
     CompanyId: string;
 }
+type PropType = {
+    company?: { id: string, name: string };
+    handleAddDepartToExistingArr?: (depart: Department) => void;
+    setLoading?: Dispatch<SetStateAction<boolean>>
+}
 
-const CreateDepartmentForm = () => {
+const CreateDepartmentForm = ({ company, handleAddDepartToExistingArr, setLoading }: PropType) => {
     const [departName, setDepartName] = useState<string | null>(null)
     const [selectedComp, setSelectedComp] = useState<selectCompType | null>(null)
-    const { request, data, loading, error } = useApiReq<Company[]>()
+    // const { request, data, loading, error } = useApiReq<Company[]>()
     const { request: departReq, data: departData, loading: departLoading, error: departError } = useApiReq<Department>()
 
+    // useEffect(() => {
+    //     request(`/api/company`, 'GET')
+    // }, [])
+
     useEffect(() => {
-        request(`/api/company`, 'GET')
-    }, [])
+        if (setLoading)
+            setLoading(departLoading)
+    }, [departLoading])
+
     const handleCreateDepartment = () => {
         console.log('creating department: ', { departName, ...selectedComp })
-        if (!departName || departName === '' || !selectedComp) {
-            alert('Need name and company both')
+        if (!departName || departName === '') {
+            alert('Name your department')
             return
         }
-        departReq(`/api/department`, 'POST', { departName, ...selectedComp })
+        // if (!departName || departName === '' || !selectedComp) {
+        //     alert('Need name and company both')
+        //     return
+        // }
+        if (!company) {
+            alert('Need Company name and id')
+            return
+        }
+        departReq(`/api/department`, 'POST',
+            { departName, CompanyName: company?.name, CompanyId: company?.id }
+        )
     }
+    useEffect(() => {
+        if (departData && handleAddDepartToExistingArr) {
+            handleAddDepartToExistingArr(departData)
+        }
+
+    }, [departData])
 
     return (
-        <div className='border border-neutral-400 p-5 rounded-2xl w-sm mx-auto my-10 flex flex-col gap-3'>
+        <div className=' rounded-2xl    flex flex-col gap-3'>
 
-            {error &&
+            {/* {error &&
                 <pre className='text-xs text-red-400'>
                     error:
                     {JSON.stringify(error, null, 10)}
                 </pre>
             }
+ */}
 
+            <h3 className="font-bold text-lg">Add department</h3>
 
             {departError &&
                 <pre className='text-xs text-red-400'>
@@ -49,13 +78,21 @@ const CreateDepartmentForm = () => {
 
 
             <fieldset className="fieldset">
-                <legend className="fieldset-legend">What's the name of department?</legend>
+                <legend className="fieldset-legend">What is the name of department?</legend>
                 <input onChange={(e) => { setDepartName(e.target.value) }} value={departName ?? ''} type="text" className="input w-full" placeholder="department name" />
                 {/* <p className="label">Optional</p> */}
             </fieldset>
 
 
-            <fieldset className="fieldset">
+            {
+                company &&
+                <fieldset className="fieldset">
+                    <legend className="fieldset-legend">Select one of your company</legend>
+                    <input disabled={true} value={company?.name} type="text" className="input w-full cursor-not-allowed" placeholder="department name" />
+                </fieldset>
+            }
+
+            {/* <fieldset className="fieldset">
                 <legend className="fieldset-legend">Select one of your company</legend>
                 {loading
                     ? <div className="skeleton h-14 w-full"></div>
@@ -76,9 +113,11 @@ const CreateDepartmentForm = () => {
                         }
                     </select>
                 }
-            </fieldset>
+            </fieldset> */}
 
-            <button disabled={departLoading || departName === null || selectedComp === null} onClick={handleCreateDepartment} className='btn btn-primary  w-full'>
+            <button
+                onClick={handleCreateDepartment}
+                className='btn btn-neutral tracking-wider  w-full'>
                 {departLoading ? <span className='loading loading-spinner'></span> : ' Create Department'}
             </button>
 

@@ -32,18 +32,7 @@ const Page = ({ params }: PropType) => {
   }, [data])
   return (
     <div>
-      [companyId]/page.tsx
-      ---------------------------------------------------
-      {
-        data &&
-        <p> total pending join requests are {data.length} </p>
-      }
-
-      <p>Redux pending state {pendingJoinReqs} </p>
-      <pre className='text-xs tracking-widest'>
-        data:
-        {JSON.stringify(data, null, 10)}
-      </pre>
+     <h1 className='text-xs tracking-widest my-2'> app\mycompanies\[companyId]\page.tsx </h1>
 
     </div>
   )

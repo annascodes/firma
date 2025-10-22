@@ -29,15 +29,14 @@ const CompanyMemberShipRoleModal = ({ id, role, email }: PropType) => {
             </button>
             <dialog id={modalId} className="modal">
                 <div className="modal-box">
-                    <h3 className="font-bold text-lg flex items-center gap-2">
-                        <span className='opacity-35'>User</span>
-                          <span className='font-medium'>{email}</span>  </h3>
+                    
                     <h3 className="font-bold text-lg">Change Role to:  </h3>
-                    <div className="py-4 flex  justify-center  gap-3 flex-wrap">
+                    <div className="py-4 flex flex-col justify-start items-start  gap-1">
 
                         {companyMembershipRoles.map(r => {
                             return (
                                 <button
+                                key={`r`}
                                     className={`btn btn-neutral btn-outline text-xs tracking-widest  ${userRole === r ? 'border' : 'border-none'}`}>
                                     {
                                         userRole === r
@@ -50,6 +49,9 @@ const CompanyMemberShipRoleModal = ({ id, role, email }: PropType) => {
                         })}
 
                     </div>
+                    <h3 className="font-bold text-lg flex items-center gap-2">
+                        <span className='opacity-35'>For user</span>
+                          <span className='font-medium'>{email}</span>  </h3>
                      
                 </div>
                 <form method="dialog" className="modal-backdrop">

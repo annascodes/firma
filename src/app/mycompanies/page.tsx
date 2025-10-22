@@ -11,10 +11,10 @@ const Page = () => {
         request(`/api/company`, 'GET')
     }, [])
     return (
-        <div>
+        <div className='p-10'>
             <h1 className='text-center text-4xl  mb-5 '>Your companies  {loading && <span className='loading loading-spinner '></span>} </h1>
 
-            <div className='flex flex-row justify-center items-center gap-3'>
+            <div className='flex flex-row flex-wrap justify-start items-center gap-3 my-5'>
                 {
                     data && data.map((d: Company, i: number) => {
                         return (

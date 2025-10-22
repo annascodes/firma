@@ -35,7 +35,7 @@ export default function RootLayout({
         <body className={outfit.className}>
           <Providers>
             <Navbar />
-            <div className="p-2">
+            <div className="p-2 mt-16  ">
               {children}
             </div>
           </Providers>

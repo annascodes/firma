@@ -9,8 +9,8 @@ const Page = ({params}:PropType) => {
     const {projectId} = use(params)
   return (
     <div>
-        project id <br />
-        {projectId}
+        {/* project id <br />
+        {projectId} */}
 
         <FullProjectPage projectId={projectId}  />
        

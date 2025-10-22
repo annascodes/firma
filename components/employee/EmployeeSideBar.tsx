@@ -49,7 +49,9 @@ const EmployeeSideBar = ({ companyId }: PropType) => {
                                     return (
 
 
-                                        <Link href={`/employee/${p.companyId}/project/${p.id}`} className='ml-2 btn btn-ghost btn-sm'>
+                                        <Link
+                                        key={p.id}
+                                        href={`/employee/${p.companyId}/project/${p.id}`} className='ml-2 btn btn-ghost btn-sm'>
                                             <BasicIcons label='project' />
                                             {p.name}
                                         </Link>
@@ -63,11 +65,11 @@ const EmployeeSideBar = ({ companyId }: PropType) => {
                 })}
             </div>
 
-
-            {/* <pre className='text-[10px] tracking-widest'>
+{/* 
+             <pre className='text-[10px] tracking-widest'>
                 {JSON.stringify(data, null, 10)}
-            </pre>
- */}
+            </pre> */}
+ 
 
 
         </div>

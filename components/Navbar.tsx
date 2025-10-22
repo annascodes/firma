@@ -7,7 +7,7 @@ import Link from 'next/link'
 const Navbar = () => {
     return (
         <div>
-            <div className="navbar bg-base-100 shadow-sm">
+            <div className="navbar  shadow-sm fixed  top-0 bg-white z-50">
                 <div className="navbar-start ">
                      
                     <div className='flex md:hidden'>

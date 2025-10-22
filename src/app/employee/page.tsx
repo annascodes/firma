@@ -27,7 +27,7 @@ const Page = () => {
 
           const role = d.role.toLowerCase() as 'admin' | 'manager' | 'guest' | 'member' | 'owner'
           return (
-            <Link href={`employee/${d.companyId}`} className='hover:bg-blue-50 hover:border-blue-50 duration-200 border-4 border-neutral-200 p-3 rounded-xl w-xs'>
+            <Link key={d.id} href={`employee/${d.companyId}`} className='hover:bg-blue-50 hover:border-blue-50 duration-200 border-4 border-neutral-200 p-3 rounded-xl w-xs'>
             <div className='flex justify-between items-center '>
                 <span className=' opacity-50 text-xs tracking-widests'>Employed in </span>
                 <BasicIcons label='arrowRight' />

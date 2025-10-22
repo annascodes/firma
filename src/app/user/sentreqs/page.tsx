@@ -35,7 +35,7 @@ const Page = () => {
       <div className='flex flex-col gap-3 mt-5'>
         {sentReqs.map(r => {
           return (
-            <div className='border border-neutral-400 p-3 rounded-xl flex justify-between items-center '>
+            <div key={r.id} className='border border-neutral-400 p-3 rounded-xl flex justify-between items-center '>
               <div className='flex flex-col gap-2'>
                 <h1 className='flex items-center gap-1 font-bold'> <BasicIcons label='company' /> {r.company.name} </h1>
                 <p className='text-sm'> <span className='text-xs text-green-400'>SENT </span> {moment(r.createdAt).fromNow()}</p>

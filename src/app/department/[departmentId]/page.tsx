@@ -59,17 +59,17 @@ const Page = ({ params }: PropType) => {
                         <BasicIcons label='project' />
                         <p className='text-xl'>Projects</p>
                     </div>
-                    <AddProjectModal 
+                    {/* <AddProjectModal 
                     departmentId={departmentId} 
                     companyId={data?.company.id as string}
                     setData = {setData}
-                    />
+                    /> */}
                 </div>
                 <div className='flex items-center flex-wrap gap-3 m-5'>
                     {(data && data.projects?.length === 0) && <span className='mx-10 opacity-40 text-xs'>No projects added yet.</span>}
                     {data && data.projects?.map((p: Project) => {
                         return (
-                            <Link href={`/project/${p.id}`} className='badge badge-outline'>
+                            <Link key={p.id} href={`/project/${p.id}`} className='badge badge-outline'>
                                 {/* <BasicIcons label='project' /> */}
                                 <p>{p.name}</p>
                             </Link>

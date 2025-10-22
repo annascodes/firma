@@ -109,6 +109,7 @@ const AddTaskModal = ({ id, projectId, companyId, preBuilt, handleNewlyAddedTask
                                             {UsersData && UsersData.map(u => {
                                                 return (
                                                     <button
+                                                    key={u.id}
                                                         onClick={() => {
                                                             setAssginTo(u.user.id)
                                                         }}

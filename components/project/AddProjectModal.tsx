@@ -14,9 +14,10 @@ type PropType = {
     companyId: string;
     setData?: Dispatch<SetStateAction<DepartmentWithRelations | null>>
     justIcon?: boolean;
+    handleSetData: (project:Project) =>void
 }
 
-const AddProjectModal = ({ departmentId, companyId, setData, justIcon = false }: PropType) => {
+const AddProjectModal = ({ departmentId, companyId, setData, justIcon = false, handleSetData }: PropType) => {
     const modalId =   `${departmentId}-${companyId}-addProjectModal`
     const [name, setName] = useState('')
     const [desc, setDesc] = useState('')
@@ -27,11 +28,14 @@ const AddProjectModal = ({ departmentId, companyId, setData, justIcon = false }:
     }
     useEffect(() => {
         if (data && setData) {
-            //now below is under red lines
+
             setData((prev) => (prev && {
                 ...prev,
                 projects: [...prev.projects, data],
             }))
+        }
+        if(data ){
+            handleSetData(data)
         }
 
     }, [data])
@@ -49,7 +53,7 @@ const AddProjectModal = ({ departmentId, companyId, setData, justIcon = false }:
                 ? <span className='loading loading-xs '></span>
                 : <> <BasicIcons label='addProject' /> {!justIcon && ' Add project'} </>} </button>
             <dialog id={modalId} className="modal">
-                <div className="modal-box">
+                <div className="modal-box z-50">
                     <h3 className="font-bold text-lg">Add Project Modal</h3>
                     <div className="py-4">
                         <div>

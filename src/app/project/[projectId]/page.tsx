@@ -108,7 +108,7 @@ const Page = ({ params }: PropType) => {
                         </div>
                         <p className='text-xl font-semibold'>Tasks</p>
                     </div>
-                    <AddTaskModal id={project?.id} projectId={project?.id} />
+                    {/* <AddTaskModal id={project?.id} projectId={project?.id} /> */}
 
                 </div>
             }
@@ -119,7 +119,7 @@ const Page = ({ params }: PropType) => {
                 <div>
                     {tasks.length > 0 ? tasks.map((t: TaskWithRelations) => {
                         return (
-                            <div className='border border-neutral-300 rounded-xl p-5 my-5'>
+                            <div key={t.id} className='border border-neutral-300 rounded-xl p-5 my-5'>
                                 <div className='flex justify-between'>
                                     <span className='text-xs tracking-widest'>
                                         {/* {moment(t.dueAt).format("Do, dddd MMMM YYYY, h:mm A")} */}
