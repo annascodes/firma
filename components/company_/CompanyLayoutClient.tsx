@@ -78,7 +78,7 @@ const CompanyLayoutClient = ({ companyId, children }: PropType) => {
           // 📱 Mobile Drawer Sidebar
           <div className='w-full p-3'>
             {
-              company && <Drawer company={company} handleAddDepart={handleAddDepart} />
+              company && <Drawer company={company} handleAddDepart={handleAddDepart} handleSetData={handleSetData} />
             }
           </div>
         )}

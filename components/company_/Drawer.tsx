@@ -13,9 +13,10 @@ type CompanyWithRelations = Company & {
 type PropType = {
     company: CompanyWithRelations;
      handleAddDepart?: (data: Department) =>void;
+      handleSetData?: (proj: Project) => void;
 }
 
-const Drawer = ({company,handleAddDepart}:PropType) => {
+const Drawer = ({company,handleAddDepart, handleSetData}:PropType) => {
     return (
         <div>
             <div className="drawer">
@@ -29,7 +30,7 @@ const Drawer = ({company,handleAddDepart}:PropType) => {
                 <div className="drawer-side">
                     <label htmlFor="my-drawer-1" aria-label="close sidebar" className="drawer-overlay"></label>
                     <ul className="menu bg-base-200 min-h-full w-80 p-4 pt-28">
-                       <SidebarCompany company={company} handleAddDepart={handleAddDepart} />
+                       <SidebarCompany company={company}  handleSetData={handleSetData} handleAddDepart={handleAddDepart} />
                     </ul>
                 </div>
             </div>
