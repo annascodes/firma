@@ -6,6 +6,7 @@ import Navbar from "../../components/Navbar";
 import { Outfit } from 'next/font/google';
 // import Providers from "@/lib/redux/Providers"; 
 import Providers from "../../lib/redux/Providers";
+import ToasterProvider from "components/ToasterProvider";
 
 
 // Configure the font
@@ -38,6 +39,7 @@ export default function RootLayout({
             <div className="p-2 mt-16  ">
               {children}
             </div>
+            <ToasterProvider/>
           </Providers>
         </body>
       </html>

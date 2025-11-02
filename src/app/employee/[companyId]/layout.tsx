@@ -1,23 +1,17 @@
-import EmployeeSideBar from 'components/employee/EmployeeSideBar';
+import EmployeeCompanyLayoutClient from 'components/employee/EmployeeCompanyLayoutClient';
 import React from 'react'
 type PropType = {
     children: React.ReactNode;
-    params:  Promise<{companyId: string}>
+    params: Promise<{ companyId: string }>
 }
 
-const layout = async ({children, params}:PropType) => {
-    const {companyId} = await params;
-  return (
-    <div className='flex  w-full'>
-        <div className='w-3/12  p-2'>
-            <EmployeeSideBar companyId={companyId} />
-        </div>
-        <div className='w-9/12  '>
+const layout = async ({ children, params }: PropType) => {
+    const { companyId } = await params;
+    return (
+        <EmployeeCompanyLayoutClient companyId={companyId}>
             {children}
-        </div>
-      
-    </div>
-  )
+        </EmployeeCompanyLayoutClient>
+    )
 }
 
 export default layout

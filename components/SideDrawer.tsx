@@ -20,6 +20,9 @@ const SideDrawer = () => {
                         {/* Sidebar content here */}
                         {/* <li><a>Sidebar Item 1</a></li>
                         <li><a>Sidebar Item 2</a></li> */}
+                        <div>
+                            <h1 className='text-6xl font-extrabold '>Firma</h1>
+                        </div>
                         <NavLinks/>
                     </ul>
                 </div>

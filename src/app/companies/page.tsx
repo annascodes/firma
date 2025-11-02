@@ -2,19 +2,45 @@
 import type { Company } from '@prisma/client'
 import CompanyDisplayCard from 'components/company/CompanyDisplayCard'
 import JoinCompany from 'components/company/JoinCompany'
+import CreateCompanyModal from 'components/company_/CreateCompanyModal'
 import { useApiReq } from 'lib/hooks/useApiReq'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const Page = () => {
-    const { request, data, loading, error } = useApiReq<Company[]>()
+    const { request, data: Company, loading, error } = useApiReq<Company[]>()
+    const [data, setData] = useState<Company[]>()
     useEffect(() => {
         request(`/api/company`, 'GET')
     }, [])
+    useEffect(() => {
+        if (Company) {
+            setData(Company)
+        }
+    }, [Company])
+    const handleNewCompany = (newCompany: Company) => {
+        console.log('Added a newly company:', newCompany?.name)
+        setData((prev)=>{
+            if(!prev) return prev;
+            return[
+                ...prev,
+                newCompany
+            ]
+        })
+
+    }
     return (
         <div className='p-10'>
-            <h1 className='text-center text-4xl  mb-5 '>Your companies  {loading && <span className='loading loading-spinner '></span>} </h1>
+            <div className='flex items-center flex-wrap justify-between'>
+                <h1 className='text-center text-4xl  mb-5 '>Your companies  {loading && <span className='loading loading-spinner '></span>} </h1>
 
-            <div className='flex flex-row flex-wrap justify-start items-center gap-3 my-5'>
+                <div className='flex items-center gap-2'>
+                    <JoinCompany />
+                    <CreateCompanyModal handleNewCompany={handleNewCompany}  />
+                </div>
+
+            </div>
+
+            <div className='flex flex-row flex-wrap justify-center items-center gap-3 my-5'>
                 {
                     data && data.map((d: Company, i: number) => {
                         return (
@@ -26,18 +52,15 @@ const Page = () => {
             </div>
 
 
-            {error && <pre className='text-red-500 tracking-widest'>{JSON.stringify(error, null, 10)}</pre>}
-
             {
-                // (data && data.length ===0 ) && 
-                <div className='flex justify-center gap-4'>
-                    <button className='btn btn-outline text-base tracking-widest btn-xl'>Create a company</button>
-                    {/* <button className='btn btn-dash  text-base tracking-widest btn-xl'>Join company</button> */}
+                error &&
+                <pre className='text-red-500 tracking-widest'>
+                    {JSON.stringify(error, null, 10)}
+                </pre>}
 
-                    <JoinCompany/>
 
-                </div>
-            }
+
+
 
             <pre className='text-[10px] tracking-widest mt-10'>
                 {JSON.stringify(data, null, 10)}

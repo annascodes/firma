@@ -16,10 +16,10 @@ const NavLinks = () => {
                 </details>
             </li> */}
             <SignedIn>
-                <li> <Link href={`/mycompanies`}>My Companies</Link> </li>
+                <li> <Link href={`/companies`}>My Companies</Link> </li>
                 <li> <Link href={`/employee`}>Employed</Link> </li>
-                <li> <Link href={`/createcompany`}>+ Company</Link> </li>
-                <li> <Link href={`/createdepartment`}>+ Department</Link> </li>
+                {/* <li> <Link href={`/createcompany`}>+ Company</Link> </li>
+                <li> <Link href={`/createdepartment`}>+ Department</Link> </li> */}
                 <li> <Link href={`/user`}> User</Link> </li>
 
             </SignedIn>

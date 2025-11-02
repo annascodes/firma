@@ -40,11 +40,11 @@ const JoinCompany = () => {
     return (
         <div>
             {/* Open the modal using document.getElementById('ID').showModal() method */}
-            <button className="btn btn-dash btn-xl text-sm tracking-widest" onClick={() => {
+            <button className="btn btn-dash  text-sm tracking-widest" onClick={() => {
                 const modal = document.getElementById(modalId) as HTMLDialogElement | null;
                 modal?.showModal()
             }}>
-                Jon company
+                Join company
             </button>
             <dialog id={modalId} className="modal">
                 <div className="modal-box">

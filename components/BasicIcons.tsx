@@ -52,6 +52,10 @@ import { TbFileTypeDocx } from "react-icons/tb";
 import { PiMicrosoftWordLogo } from "react-icons/pi";
 import { FiPlus } from "react-icons/fi";
 import { TbUsersGroup } from "react-icons/tb";
+import { IoSettingsOutline } from "react-icons/io5";
+import { TbDotsVertical } from "react-icons/tb";
+
+
 
 
 
@@ -106,6 +110,9 @@ const labelAndIcons = {
     doc: PiMicrosoftWordLogo,
     // attachment file icons --ends
     users: TbUsersGroup,
+    settings: IoSettingsOutline,
+    options: TbDotsVertical,
+    
 
 
 }

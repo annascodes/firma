@@ -1,8 +1,8 @@
 /* 
-
-----  Add Department button(modal) to company sidebar
-----  Fix mobile and desktop view of comopany sidebar
-----  Make up the Navlinks drawer and remove unnecessary links 
+TODO LISTS:
+----  Change task status
+----  Add priority feature
+----  Employee panel/dashboard fixation
 
 */
 

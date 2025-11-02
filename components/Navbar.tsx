@@ -6,39 +6,39 @@ import Link from 'next/link'
 
 const Navbar = () => {
     return (
-        <div>
-            <div className="navbar  shadow-sm fixed  top-0 bg-white z-50">
-                <div className="navbar-start ">
-                     
-                    <div className='flex md:hidden'>
-                        <SideDrawer/>
-                    </div>
-                    <Link href={'/'} className="btn btn-neutral btn-outline border-none text-xl font-semibold ">Firma</Link>
-                </div>
-                <div className="navbar-center hidden md:flex">
-                    <ul className="menu menu-horizontal px-1">
-                         
-                        <NavLinks/>
-                    </ul>
-                    
-                </div>
-                <div className="navbar-end  flex justify-end gap-2 items-center">
 
-                    <SignedIn>
-                        <UserButton/>
-                    </SignedIn>
-                    <SignedOut>
-                        <SignUpButton>
-                            <button className='btn btn-outline btn-xs'>Sign up</button>
-                        </SignUpButton>
-                        <SignInButton>
-                             <button className='btn btn-neutral btn-xs'>Sign in</button>
-                        </SignInButton>
-                    </SignedOut>
+        <div className="navbar  shadow-sm fixed  top-0 bg-white z-50 ">
+            <div className="navbar-start ">
+
+                <div className='flex md:hidden'>
+                    <SideDrawer />
                 </div>
+                <Link href={'/'} className="btn btn-neutral btn-outline border-none text-xl font-semibold ">Firma</Link>
             </div>
+            <div className="navbar-center hidden md:flex">
+                <ul className="menu menu-horizontal px-1">
 
+                    <NavLinks />
+                </ul>
+
+            </div>
+            <div className="navbar-end  flex justify-end gap-2 items-center">
+
+                <SignedIn>
+                    <UserButton />
+                </SignedIn>
+                <SignedOut>
+                    <SignUpButton>
+                        <button className='btn btn-outline btn-xs'>Sign up</button>
+                    </SignUpButton>
+                    <SignInButton>
+                        <button className='btn btn-neutral btn-xs'>Sign in</button>
+                    </SignInButton>
+                </SignedOut>
+            </div>
         </div>
+
+
     )
 }
 

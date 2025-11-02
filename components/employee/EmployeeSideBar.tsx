@@ -8,29 +8,32 @@ import Link from 'next/link';
 
 
 type PropType = {
-    companyId: string;
+    // companyId: string;
+    company: Company;
+    data: DepartmentsWithRelations[];
 }
 type DepartmentsWithRelations = Department & {
     projects: Project[];
     company: Company;
 }
 
-const EmployeeSideBar = ({ companyId }: PropType) => {
-    const { request, data, loading, error } = useApiReq<DepartmentsWithRelations[]>()
+const EmployeeSideBar = ({ data, company }: PropType) => {
+    // const { request, data, loading, error } = useApiReq<DepartmentsWithRelations[]>()
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        request(`/api/employed/${companyId}`)
-    }, [])
-    const companyName = (data && data.length > 0) && data[0].company.name || ''
+    //     request(`/api/employed/${companyId}`)
+    // }, [])
+    // const companyName = (data && data.length > 0) && data[0].company.name || ''
     return (
         <div className='  border-r '>
-            <span className='badge badge-secondary text-xs tracking-widest'>employed  </span>
-            <div className='flex items-center gap-2  mb-5'>
+            <div className='flex items-center gap-2 flex-wrap  mb-5'>
                 <BasicIcons label='company' />
-                <HeadingTag heading={companyName} />
-                {loading && <span className='loading loading-spinner'></span>}
+                <HeadingTag heading={company.name} />
+                {false && <span className='loading loading-spinner'></span>}
+                <span className='badge badge-secondary text-xs tracking-widest'>employed  </span>
             </div>
+
 
 
             <div className='flex flex-col gap-2 items-start'>
@@ -38,20 +41,19 @@ const EmployeeSideBar = ({ companyId }: PropType) => {
                     return (
                         <div key={d.id} className=''>
 
-                            <button className='btn btn-neutral btn-sm'>
+                            <button className='btn btn-soft'>
                                 <BasicIcons label='department' />
                                 {d.name}
                             </button>
 
 
-                            <div className=' mt-2 mb-5'>
+                            <div className=' mt-2 mb-5 flex flex-col items-start gap-1'>
                                 {d.projects.map(p => {
                                     return (
-
-
                                         <Link
-                                        key={p.id}
-                                        href={`/employee/${p.companyId}/project/${p.id}`} className='ml-2 btn btn-ghost btn-sm'>
+                                            key={p.id}
+                                            href={`/employee/${p.companyId}/project/${p.id}`}
+                                            className='ml-5 btn btn-outline btn-neutral border-none btn-sm'>
                                             <BasicIcons label='project' />
                                             {p.name}
                                         </Link>
@@ -65,11 +67,11 @@ const EmployeeSideBar = ({ companyId }: PropType) => {
                 })}
             </div>
 
-{/* 
+            {/* 
              <pre className='text-[10px] tracking-widest'>
                 {JSON.stringify(data, null, 10)}
             </pre> */}
- 
+
 
 
         </div>

@@ -22,6 +22,8 @@ export async function GET(req: Request, { params }: PropType) {
         // const tasks = await db.task.findMany({where: {assigneeId: user.id}})
 
         // Fetch all departments with their projects where the user has assigned tasks
+        const company = await db.company.findUnique({ where: { id: companyId } })
+        if (!company) return NextResponse.json({ error: 'Company not found!' }, { status: 200 })
         const departments = await db.department.findMany({
             where: {
                 companyId: companyId,
@@ -60,7 +62,7 @@ export async function GET(req: Request, { params }: PropType) {
                 },
                 company: true
             },
-           
+
         });
 
         // Format response into your requested structure:
@@ -74,7 +76,7 @@ export async function GET(req: Request, { params }: PropType) {
         //     })),
         // }));
 
-        return NextResponse.json(departments, { status: 200 });
+        return NextResponse.json({departments, company}, { status: 200 });
 
     } catch (error) {
         console.log('Error in GETting all the projects of the company user is employed in:', error)

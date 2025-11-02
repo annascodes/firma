@@ -9,24 +9,41 @@ import moment from 'moment';
 import DeletePermit from '../DeletePermit';
 import AttachmentUploader from 'components/AttachmentUploader';
 import AttachmentFile from 'components/AttachmentFile';
+import { useApiReq } from 'lib/hooks/useApiReq';
 
 type TaskWithRelations = Task & {
     assignee: User;
     attachments?: Attachment[]
 }
-type PropType = { task: TaskWithRelations; isAdmin?: boolean; companyId: string, isAssignee: boolean }
+type PropType = {
+    task: TaskWithRelations;
+    isAdmin?: boolean;
+    companyId: string,
+    isAssignee: boolean
+    handleUpdSingleTask: (data: TaskWithRelations) => void;
+}
 
-const ShowTaskInModal = ({ task, isAdmin = false, companyId, isAssignee }: PropType) => {
+const ShowTaskInModal = ({ task, isAdmin = false, companyId, isAssignee, handleUpdSingleTask }: PropType) => {
     const modalId = `${task.id}-showTaskInModal`;
     const [attachments, setAttachments] = useState<Attachment[]>([])
-
+    const [taskStatus, setTaskStatus] = useState<'DONE' | 'IN_PROGRESS' | 'BLOCKED' | 'TODO'>('IN_PROGRESS')
+    const { request, data, loading, error } = useApiReq<TaskWithRelations>()
 
     useEffect(() => {
         if (task && task.attachments) {
             setAttachments(task.attachments)
+            setTaskStatus(task.status)
         }
     }, [task])
-
+    const handleJustStatus = (status: string) => {
+        request(`/api/task/${task.id}`, 'PUT', { status })
+    }
+    useEffect(() => {
+        if (data) {
+            setTaskStatus(data.status)
+            handleUpdSingleTask({ ...task, status: data.status, updatedAt: data.updatedAt })
+        }
+    }, [data])
     return (
         <div>
             {/* Open the modal using document.getElementById('ID').showModal() method */}
@@ -46,7 +63,13 @@ const ShowTaskInModal = ({ task, isAdmin = false, companyId, isAssignee }: PropT
 
                         <>
                             <div className='flex justify-end gap-0 items-center mb-3'>
-                                <AddTaskModal companyId={companyId} preBuilt={task} id={task.id} projectId={task.projectId} />
+                                <AddTaskModal
+                                    companyId={companyId}
+                                    preBuilt={task}
+                                    id={task.id}
+                                    projectId={task.projectId}
+                                    handleUpdSingleTask={handleUpdSingleTask}
+                                />
 
                                 <DeletePermit id={task.id} />
 
@@ -56,22 +79,32 @@ const ShowTaskInModal = ({ task, isAdmin = false, companyId, isAssignee }: PropT
                     <div className='flex justify-between items-center'>
 
                         <div className="font-bold text-lg flex item-center gap-2">
-                            <span>TASK</span>
-                            <div className="dropdown dropdown-start ">
-                                <div className='flex items-center gap-2'>
-                                    {/* <p className='text-xs opacity-40'>Status</p> */}
-                                    <div tabIndex={0} role="button" className="cursor-pointer flex items-center gap-0 border p-1 rounded-md border-neutral-300 border-dashed">
-                                        <TaskStatus status={task.status} />
-                                        <BasicIcons label='arrowDown' />
-                                    </div>
+                            <span>TASK </span>
+                            {loading
+                                ? <div className='cursor-pointer flex items-center gap-0 border p-1 rounded-md border-neutral-300 border-dashed'>
+                                    <TaskStatus status={taskStatus} />
+                                    <span className='loading loading-dots loading-sm'></span>
                                 </div>
-                                <ul tabIndex={0} className="dropdown-content menu bg-neutral-100 rounded-box z-1 w-52 p-2 shadow-sm">
-                                    <StatusBox isChecked={task.status == 'TODO'} status='TODO' />
-                                    <StatusBox isChecked={task.status == 'IN_PROGRESS'} status='IN_PROGRESS' />
-                                    <StatusBox isChecked={task.status == 'DONE'} status='DONE' />
-                                    <StatusBox isChecked={task.status == 'BLOCKED'} status='BLOCKED' />
-                                </ul>
-                            </div>
+                                : <div className="dropdown dropdown-start ">
+                                    <div className='flex items-center gap-2'>
+                                        {/* <p className='text-xs opacity-40'>Status</p> */}
+
+                                         <div tabIndex={0} role="button" className="cursor-pointer flex items-center gap-0 border p-1 rounded-md border-neutral-300 border-dashed">
+
+                                            <TaskStatus status={taskStatus} />
+                                            <BasicIcons label='arrowDown' />
+                                        </div>
+                                    </div>
+                                    <ul tabIndex={0} className="dropdown-content menu bg-neutral-100 rounded-box z-1 w-52 p-2 shadow-sm">
+                                        <StatusBox handleJustStatus={handleJustStatus} isChecked={task.status == 'TODO'} status='TODO' />
+                                        <StatusBox handleJustStatus={handleJustStatus} isChecked={task.status == 'IN_PROGRESS'} status='IN_PROGRESS' />
+                                        <StatusBox handleJustStatus={handleJustStatus} isChecked={task.status == 'DONE'} status='DONE' />
+                                        <StatusBox handleJustStatus={handleJustStatus} isChecked={task.status == 'BLOCKED'} status='BLOCKED' />
+                                    </ul>
+                                </div>
+
+                            }
+
                         </div>
 
                         <div className='flex items-center gap-1'>
@@ -81,6 +114,11 @@ const ShowTaskInModal = ({ task, isAdmin = false, companyId, isAssignee }: PropT
                     </div >
                     <p className="py-4 flex flex-col gap-2">
 
+                        <div className='flex items-center gap-2'>
+                            <BasicIcons label='calender' />
+                            <span className='text-xs opacity-40'>updated at</span>
+                            <p className=''>{moment(task.updatedAt).format("ddd, DD MMMM YYYY, h:mma")} </p>
+                        </div>
                         <div className='flex items-center gap-2'>
                             <BasicIcons label='calender' />
                             <span className='text-xs opacity-40'>posted</span>
@@ -120,7 +158,7 @@ const ShowTaskInModal = ({ task, isAdmin = false, companyId, isAssignee }: PropT
                             </div>
                         }
 
-                       
+
 
                         {/* <pre className='text-xs tracking-widest'>
                             {JSON.stringify(task, null, 10)}
@@ -143,11 +181,15 @@ export default ShowTaskInModal
 type TypesstatusBox = {
     isChecked: boolean;
     status: 'DONE' | 'IN_PROGRESS' | 'TODO' | 'BLOCKED';
+    handleJustStatus: (data: string) => void;
 
 }
-const StatusBox = ({ isChecked, status }: TypesstatusBox) => {
+const StatusBox = ({ isChecked, status, handleJustStatus }: TypesstatusBox) => {
+
     return (
-        <li onClick={() => alert(`You clicked on ${status}`)} className='flex flex-row items-center gap'>
+        <li
+            onClick={() => handleJustStatus(status)}
+            className='flex flex-row items-center gap'>
             {isChecked
                 ? <BasicIcons label='filledCheckbox' />
                 : <BasicIcons label='emptyCheckbox' />

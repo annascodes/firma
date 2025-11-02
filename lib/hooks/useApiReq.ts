@@ -20,6 +20,7 @@ export function useApiReq<T = unknown>() {
         body?: Record<string, unknown>): Promise<T | null> => {
         setLoading(true)
         setError(null)
+        setData(null)
         try {
             const res = await fetch(url, {
                 method,

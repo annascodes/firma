@@ -52,6 +52,32 @@ const FullProjectPage = ({ projectId }: PropType) => {
     const handleNewlyAddedTask = (newTask: TaskWithRelations) => {
         setTasks([newTask, ...tasks])
     }
+    const handleUpdSingleTask = (updatedTask: TaskWithRelations)=>{
+        console.log('handleUpdSingleTask:')
+        setTasks((prev)=>{
+            if(!prev) return prev;
+            return prev.map(t=>{
+                if(t.id=== updatedTask.id){
+                    return {
+                        ...t, 
+                        description: updatedTask.description,
+                        priority: updatedTask.priority,
+                        status: updatedTask.status,
+                        title: updatedTask.title,
+                        dueAt: updatedTask.dueAt,
+                        assigneeId: updatedTask.assigneeId,
+                        updatedAt: updatedTask.updatedAt,
+                        assignee: updatedTask.assignee
+
+                    }
+                }else{
+                    return t
+                }
+                
+            })
+        })
+    }
+    console.log('****setTasks:', tasks)
     return (
         <div className=' mx-auto'>
         
@@ -167,12 +193,13 @@ const FullProjectPage = ({ projectId }: PropType) => {
                                     companyId={project?.company.id || ''}
                                     task={t}
                                     isAdmin={UserData?.id === project?.company.ownerId} 
-                                    isAssignee= {UserData?.id === t.assigneeId  || UserData?.id === project?.company.ownerId}    
+                                    isAssignee= {UserData?.id === t.assigneeId  || UserData?.id === project?.company.ownerId}
+                                    handleUpdSingleTask={handleUpdSingleTask}
                                 />
                                     
                                 
                                 <div className='flex justify-between items-center border-0 mt-2'>
-                                    <p className='flex items-center gap-1  '> <BasicIcons label='assignee' size='text-lg' /> {t.assignee.name}</p>
+                                    <p className='flex items-center gap-1  '> <BasicIcons label='assignee' size='text-lg' /> {t?.assignee.name}</p>
                                     {/* <p className='flex items-center gap-1 badge-outline badge  mt-5'>  {t.priority}</p> */}
                                     <TaskPriority priority={t.priority} />
                                 </div>
