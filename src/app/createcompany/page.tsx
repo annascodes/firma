@@ -9,7 +9,7 @@ const Page = () => {
 
     return (
         <div>
-            <CreateCompanyForm ownerId={userId} />
+            {/* <CreateCompanyForm ownerId={userId} /> */}
         </div>
     )
 }
