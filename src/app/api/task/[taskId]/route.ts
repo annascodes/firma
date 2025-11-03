@@ -19,7 +19,7 @@ export async function PUT(req: Request, { params }: PropType) {
     if (!user) return NextResponse.json({ error: 'There is clerkId but user not found' }, { status: 401 })
 
 
-    let dueAt = moment(body.due).utc().toDate()
+    // let dueAt = moment(body.due).utc().toDate()
 
     console.log(body)
     try {
@@ -111,10 +111,10 @@ export async function DELETE(req: Request, { params }: PropType) {
             return NextResponse.json({ error: 'Error while deleting task itself' }, { status: 500 })
         }
 
-        return NextResponse.json({ message: "Task and attachments deleted" },{status: 200});
+        return NextResponse.json({ message: "Task and attachments deleted" }, { status: 200 });
     } catch (error) {
-        console.log('Error in deleting task and its attachments:',error)
-        return NextResponse.json({error: 'Error in deleting task and its attachments'},{status: 500})
+        console.log('Error in deleting task and its attachments:', error)
+        return NextResponse.json({ error: 'Error in deleting task and its attachments' }, { status: 500 })
     }
 
 

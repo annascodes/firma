@@ -191,7 +191,7 @@ const AddTaskModal = ({ id, projectId, companyId, preBuilt, handleNewlyAddedTask
                                     {
                                         prioritiesArr.map((p) => {
                                             return (
-                                                <div
+                                                <div key={p}
                                                     onClick={() => {
                                                         setPriority(p)
                                                     }}
@@ -218,6 +218,7 @@ const AddTaskModal = ({ id, projectId, companyId, preBuilt, handleNewlyAddedTask
                                         statusArr.map((s) => {
                                             return (
                                                 <div
+                                                key={s}
                                                     onClick={() => {
                                                         setStatus(s)
                                                     }}

@@ -26,7 +26,7 @@ type ProjectWithRelations = Project & {
 const ManageCompanyModal = ({ department }: PropType) => {
     const modalId = `manageCompanyModalId ${department.id}`
     const { request, data, loading, error } = useApiReq<ProjectWithRelations>()
-    const [fullProj, setFullProj] = useState<ProjectWithRelations[]>()
+    const [fullProj, setFullProj] = useState<ProjectWithRelations[]>() //arr[] of projects along with tasks[]
     const [projectId, setProjectId] = useState('')
     const handleFetchDepartProjs = (projId: string) => {
         setProjectId(projId)
@@ -35,12 +35,22 @@ const ManageCompanyModal = ({ department }: PropType) => {
 
     useEffect(() => {
         if (data) {
+            let alreadyThere = false;
+            fullProj?.map(fp => {
+                if (fp.id === data.id) {
+                    alreadyThere = true;
+                }
+            })
+
             setFullProj((prev) => {
                 if (!prev) return [data];
-                return [
-                    ...prev,
-                    data
-                ]
+                if (!alreadyThere)
+                    return [
+                        ...prev,
+                        data
+                    ]
+                if (alreadyThere)
+                    return prev;
             })
         }
     }, [data])
@@ -68,7 +78,7 @@ const ManageCompanyModal = ({ department }: PropType) => {
                     <p className="">
                         {department.projects.map(p => {
                             return (
-                                <div className='border border-neutral-400 rounded-lg p-2 my-2'>
+                                <div key={p.id} className='border border-neutral-400 rounded-lg p-2 my-2'>
                                     <div className='flex items-center justify-between '>
                                         <div className='flex items-center gap-2 font-semibold'>
                                             <BasicIcons label='project' size='text-2xl' />
@@ -76,7 +86,7 @@ const ManageCompanyModal = ({ department }: PropType) => {
                                         </div>
                                         <div className='flex items-center gap-2'>
                                             <button
-                                                disabled={loading }
+                                                disabled={loading}
                                                 onClick={() => handleFetchDepartProjs(p.id)}
                                                 className='btn btn-neutral btn-outline btn-xs border-none p-1'>
                                                 {(loading && projectId === p.id)
@@ -85,7 +95,7 @@ const ManageCompanyModal = ({ department }: PropType) => {
                                                 }
 
                                             </button>
-                                           <DeletePermit id={p.id} message={`Delete this project - ${p.name}`} />
+                                            <DeletePermit id={p.id} message={`Delete this project - ${p.name}`} />
                                         </div>
 
                                     </div>
@@ -97,23 +107,23 @@ const ManageCompanyModal = ({ department }: PropType) => {
                                             fullProj && fullProj.map(fp => {
                                                 if (fp.id === p.id) {
                                                     return (
-                                                        <div>
-                                        <span className='text-xs tracking-widest opacity-40'>Tasks</span>
+                                                        <div key={fp.id}>
+                                                            <span className='text-xs tracking-widest opacity-40'>Tasks</span>
 
                                                             {fp.tasks.length === 0 &&
                                                                 <div className='text-xs opacity-50 tracking-wider text-center'> no task</div>}
                                                             {fp.tasks.map(t => {
                                                                 return (
-                                                                    <div className='flex justify-between items-center bg-blue-50 my-2 p-2 rounded-lg'>
+                                                                    <div key={t.id} className='flex justify-between items-center bg-blue-50 my-2 p-2 rounded-lg'>
                                                                         <div className='flex items-center text-sm   gap-2 '>
                                                                             <BasicIcons label='textFile' size='text-base' />
                                                                             <p> {t.title}</p>
                                                                         </div>
-                                                                       <DeletePermit 
-                                                                       id={t.id} 
-                                                                       message={`Delete this task - ${t.title}`} 
-                                                                       css={`text-base text-red-400`}
-                                                                       />
+                                                                        <DeletePermit
+                                                                            id={t.id}
+                                                                            message={`Delete this task - ${t.title}`}
+                                                                            css={`text-base text-red-400`}
+                                                                        />
                                                                     </div>
                                                                 )
                                                             })}
@@ -144,15 +154,4 @@ const ManageCompanyModal = ({ department }: PropType) => {
 export default ManageCompanyModal
 
 
-/* 
-
-[
-
-{
-projectId: 123,
-tasks: []
-}
-
-]
-
-*/
+ 
