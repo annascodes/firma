@@ -5,6 +5,7 @@ import { auth, currentUser } from "@clerk/nextjs/server";
 import BasicIcons from "../../components/BasicIcons";
 import Hero from "components/Hero";
 import Features from "components/landing_page_comps/Features";
+import ImgSlider from "components/ImgSlider";
 
 
 
@@ -22,7 +23,7 @@ export default async function Home() {
       <Features />
 
 
-      <BasicIcons label='info' showFullLog={true} />
+      {/* <BasicIcons label='info' showFullLog={true} /> */}
 
       {/* <pre className=" text-xs tracking-widest">
         {JSON.stringify(user, null, 10)}

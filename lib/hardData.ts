@@ -26,3 +26,10 @@ export const companyMembershipRoles = ['OWNER',
   { firstName: "Ella", lastName: "Harris", email: "ella.harris+clerk_test@example.com" },
   { firstName: "Alexander", lastName: "Clark", email: "alexander.clark+clerk_test@example.com" }
 ];
+
+export const LandingPagefeatures = [
+        { title: 'Make you own company', desc: 'You can create your own company', img: 'https://yaqmgjjvcaymp21r.public.blob.vercel-storage.com/create_company-LKI2RaTtW3A6LqRLfnPLTJWpLYzChp.PNG' },
+        { title: 'Join an existing company', desc: 'You can join any existing company just by sending them request to join.', img: 'https://yaqmgjjvcaymp21r.public.blob.vercel-storage.com/join_company-WfooN85mPDBvmUERca2gOSVPH47w2B.PNG' },
+        { title: 'Departments, Project and tasks.', desc: 'Each company can contain multiple departments , projects as well as tasks.', img: 'https://yaqmgjjvcaymp21r.public.blob.vercel-storage.com/departs_projects_tasks-hTCUD4VA5z6mYlXpFjPBXJKGEk3cPm.PNG' },
+        { title: 'Task modal with attachments and other details', desc: 'Task modal has details like priority, status , dates , attachments and much more.', img: 'https://yaqmgjjvcaymp21r.public.blob.vercel-storage.com/task_modal-ivvcSIalbuUoS2NuXVxajp74dH2kr6.PNG' },
+    ]
