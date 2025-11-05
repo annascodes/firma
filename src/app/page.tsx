@@ -6,6 +6,8 @@ import BasicIcons from "../../components/BasicIcons";
 import Hero from "components/Hero";
 import Features from "components/landing_page_comps/Features";
 import ImgSlider from "components/ImgSlider";
+import { LandingPagefeatures } from '../../lib/hardData';
+import ImgScroll from "components/ImgScroll";
 
 
 
@@ -15,12 +17,15 @@ export default async function Home() {
   const authUser = await auth()
   const clerkUser = await currentUser()
   return (
-    <div>
+    <div className="">
 
-
+      
+      {/* <ImgScroll/> */}
       <Hero />
 
       <Features />
+
+
 
 
       {/* <BasicIcons label='info' showFullLog={true} /> */}

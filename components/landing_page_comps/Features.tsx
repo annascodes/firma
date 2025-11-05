@@ -4,10 +4,11 @@ const Features = () => {
 
     return (
         <div>
-            <div className='md:w-6xl mx-auto '>
+            {/* <div className='md:w-6xl mx-auto '>
                 <h1 className='md:text-4xl text-2xl font-semibold mb-2'>Features</h1>
-            </div>
-            <div className="flex items-center justify-center   flex-wrap gap-2 mb-5 ">
+            </div> */}
+              <h1 className='md:text-4xl text-2xl font-semibold mb-2'>Features</h1>
+            <div className="flex items-center justify-center flex-wrap gap-2 mb-5 ">
                 {LandingPagefeatures.map((f, i) => (
                     <div key={i} className="hover:scale-125 duration-500 hover:z-50 card w-96 shadow-sm border-dashed border-0 bg-stone-200">
                         <div className="card-body">

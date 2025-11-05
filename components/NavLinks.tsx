@@ -1,4 +1,4 @@
-import { SignedIn } from '@clerk/nextjs'
+import { SignedIn, SignedOut, SignInButton, SignUpButton } from '@clerk/nextjs'
 import Link from 'next/link'
 import React from 'react'
 
@@ -23,7 +23,19 @@ const NavLinks = () => {
                 <li> <Link href={`/user`}> User</Link> </li>
 
             </SignedIn>
- 
+
+
+            <SignedOut>
+                <div className='flex flex-col  justify-start items-start gap-3'>
+                    <SignUpButton>
+                        <button className='btn btn-neutral btn-sm '>Get youself register</button>
+                    </SignUpButton>
+                    <SignInButton>
+                        <button className='btn btn-neutral btn-outline btn-sm'>Sign in</button>
+                    </SignInButton>
+                </div>
+            </SignedOut>
+
 
 
         </>
