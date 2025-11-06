@@ -3,17 +3,12 @@ import { useUser } from '@clerk/nextjs'
 import React from 'react'
 
 const Page = () => {
-    const {user} = useUser()
+  const { user } = useUser()
   return (
     <div className=''>
-     <span className='md:text-2xl tracking-widest'>
-        Work you are engage within this company
-        <div className='w-full overflow-auto border p-5'>
-            <pre className='text-xs tracking-widest'>
-            {JSON.stringify(user, null, 10)}
-        </pre>
-        </div>
-     </span>
+      <div className='opacity-55 md:text-2xl tracking-widest h-screen flex items-center justify-center '>
+        <h1>  You are an employee of this company.</h1>
+      </div>
     </div>
   )
 }

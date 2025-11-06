@@ -26,7 +26,7 @@ const NavLinks = () => {
 
 
             <SignedOut>
-                <div className='flex flex-col  justify-start items-start gap-3'>
+                <div className='flex md:flex-row flex-col  justify-start items-start gap-3'>
                     <SignUpButton>
                         <button className='btn btn-neutral btn-sm '>Get youself register</button>
                     </SignUpButton>

@@ -19,9 +19,9 @@ const Page = () => {
     }, [Company])
     const handleNewCompany = (newCompany: Company) => {
         console.log('Added a newly company:', newCompany?.name)
-        setData((prev)=>{
-            if(!prev) return prev;
-            return[
+        setData((prev) => {
+            if (!prev) return prev;
+            return [
                 ...prev,
                 newCompany
             ]
@@ -32,12 +32,10 @@ const Page = () => {
         <div className='p-10'>
             <div className='flex items-center flex-wrap justify-between'>
                 <h1 className='text-center text-4xl  mb-5 '>Your companies  {loading && <span className='loading loading-spinner '></span>} </h1>
-
                 <div className='flex items-center gap-2'>
                     <JoinCompany />
-                    <CreateCompanyModal handleNewCompany={handleNewCompany}  />
+                    <CreateCompanyModal handleNewCompany={handleNewCompany} />
                 </div>
-
             </div>
 
             <div className='flex flex-row flex-wrap justify-center items-center gap-3 my-5'>
@@ -48,7 +46,6 @@ const Page = () => {
                         )
                     })
                 }
-
             </div>
 
 
@@ -56,15 +53,13 @@ const Page = () => {
                 error &&
                 <pre className='text-red-500 tracking-widest'>
                     {JSON.stringify(error, null, 10)}
-                </pre>}
+                </pre>
+            }
 
-
-
-
-
-            <pre className='text-[10px] tracking-widest mt-10'>
+            
+            {/* <pre className='text-[10px] tracking-widest mt-10'>
                 {JSON.stringify(data, null, 10)}
-            </pre>
+            </pre> */}
 
 
 

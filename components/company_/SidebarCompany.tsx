@@ -7,6 +7,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React from 'react'
 import ManageCompanyModal from './ManageCompanyModal'
+import CompanyInfoModal from 'components/CompanyInfoModal'
 
 type DepartmentWithRelations = Department & {
   projects: Project[]
@@ -37,8 +38,9 @@ const SidebarCompany = ({ company, handleSetData, handleAddDepart }: PropType) =
     <div className=''>
 
       <div className='flex items-center flex-wrap gap-2 justify-start'>
-        <BasicIcons label='company' />
-        <p className='text-xl font-bold '>{company.name}</p>
+        {/* <BasicIcons label='company' />
+        <p className='text-xl font-bold '>{company.name}</p> */}
+        <CompanyInfoModal companyId={company.id} companyName={company.name} />
         <CreateDepartmentModal companyId={company.id} companyName={company.name} handleAddDepartToExistingArr={handleAddDepart} />
       </div>
       <div className='mt-5 flex flex-col gap-1 justify-start'>

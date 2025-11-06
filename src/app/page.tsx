@@ -28,7 +28,7 @@ export default async function Home() {
 
 
 
-      {/* <BasicIcons label='info' showFullLog={true} /> */}
+      <BasicIcons label='info' showFullLog={true} />
 
       {/* <pre className=" text-xs tracking-widest">
         {JSON.stringify(user, null, 10)}

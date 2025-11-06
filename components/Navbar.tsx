@@ -27,14 +27,14 @@ const Navbar = () => {
                 <SignedIn>
                     <UserButton />
                 </SignedIn>
-                <SignedOut>
+                {/* <SignedOut>
                     <SignUpButton>
                         <button className='btn btn-outline btn-xs'>Sign up</button>
                     </SignUpButton>
                     <SignInButton>
                         <button className='btn btn-neutral btn-xs'>Sign in</button>
                     </SignInButton>
-                </SignedOut>
+                </SignedOut> */}
             </div>
         </div>
 

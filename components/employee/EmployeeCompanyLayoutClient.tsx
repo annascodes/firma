@@ -33,12 +33,16 @@ const EmployeeCompanyLayoutClient = ({ children, companyId }: PropType) => {
         {isLarge
           ? <div className='w-3/12 flex flex-col sticky h-svh overflow-auto  p-3'>
             {/* desktop  */}
+            {loading && <span className='loading loading-dots'></span> }
             {data &&
               <EmployeeSideBar data={data.departments} company={data.company} />
             }
           </div>
           : <div className=''>
             {/* mobile  */}
+             {loading && <button className='btn btn-soft '>
+              <span className='loading loading-dots'></span>
+             </button> }
             {
               data &&
               <EmployeeDrawer data={data?.departments} company={data?.company} />

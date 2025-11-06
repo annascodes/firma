@@ -5,6 +5,7 @@ import type { Company, Department, Project } from '@prisma/client';
 import BasicIcons from 'components/BasicIcons';
 import HeadingTag from 'components/HeadingTag';
 import Link from 'next/link';
+import CompanyInfoModal from 'components/CompanyInfoModal';
 
 
 type PropType = {
@@ -28,13 +29,17 @@ const EmployeeSideBar = ({ data, company }: PropType) => {
     return (
         <div className='  border-r '>
             <div className='flex items-center gap-2 flex-wrap  mb-5'>
-                <BasicIcons label='company' />
-                <HeadingTag heading={company.name} />
-                {false && <span className='loading loading-spinner'></span>}
-                <span className='badge badge-secondary text-xs tracking-widest'>employed  </span>
+                {/* <BasicIcons label='company' />
+                <HeadingTag heading={company.name} /> */}
+                <CompanyInfoModal companyId={company.id} companyName = {company.name}  />
+              
+                <span className='badge badge-neutral  text-xs tracking-widest'>employed  </span>
             </div>
 
 
+{
+   ( data && data.length ===0 ) && <div className='text-xs tracking-wide opacity-55'> No work has been assigned yet.</div>
+}
 
             <div className='flex flex-col gap-2 items-start'>
                 {data && data.map(d => {
