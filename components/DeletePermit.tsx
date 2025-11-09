@@ -22,7 +22,7 @@ const DeletePermit = ({ id, handleDelete, message, css }: PropTypes) => {
         <BasicIcons label='trash' size={css} />
       </button>
       <dialog id={modalId} className="modal">
-        <div className="modal-box">
+        <div className="modal-box w-xs">
           <h3 className="font-bold text-lg">Delete Permission!</h3>
          
           {message ? <p>{message}</p> :  <p className="">Do you really want to delete this?</p>}

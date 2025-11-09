@@ -1,2 +1,3 @@
 fixed_issue_004 = fixed the employee page 
 fixed_issue_005 = fixed hero links for signin/up, fixed imgslider 
+fixed_issue_006 = fixed employee panel bugs
