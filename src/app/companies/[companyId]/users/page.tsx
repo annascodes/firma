@@ -5,6 +5,7 @@ import AddUser from '../../../../../components/user/AddUser'
 import { useApiReq } from 'lib/hooks/useApiReq'
 import type { CompanyMembership, User } from '@prisma/client'
 import CompanyMemberShipRoleModal from 'components/company/CompanyMemberShipRoleModal'
+import InvitationLetter from 'components/user/InvitationLetter'
 
 type TypeProp = {
   params: Promise<{ companyId: string }>
@@ -35,7 +36,8 @@ const Page = ({ params }: TypeProp) => {
       <div className='flex justify-between items-center '>
         <HeadingTag heading='Users' />
         {loading && <span className='loading loading-spinner '></span>}
-        <AddUser companyId={companyId} />
+        {/* <AddUser companyId={companyId} /> */}
+        <InvitationLetter/>
       </div>
 
       {/* ----------------------- */}
