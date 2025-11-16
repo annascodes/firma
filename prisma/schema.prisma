@@ -17,6 +17,7 @@ model User {
     assignedTasks  Task[]               @relation("AssignedTasks")
     ownedCompanies Company[]            @relation("UserCompanies")
     joinRequests   CompanyJoinRequest[]
+    invitations   InvitationLetter[]
     createdAt      DateTime             @default(now())
     updatedAt      DateTime             @updatedAt
     attachments    Attachment[]         @relation("UserAttachments")
@@ -32,12 +33,27 @@ model Company {
     projects     Project[]
     members      CompanyMembership[]
     joinRequests CompanyJoinRequest[]
+    invitations InvitationLetter[]
     createdAt    DateTime             @default(now())
     updatedAt    DateTime             @updatedAt
 
     @@index([ownerId])
 }
 
+
+
+model InvitationLetter {
+    id  String @id @default(cuid())
+    user User @relation(fields: [userId], references: [id])    
+    userId String
+    message String
+    company Company @relation(fields: [companyId], references: [id])
+    companyId String
+    status JoinStatus @default(PENDING)
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+      @@unique([userId, companyId]) // prevent duplicate requests
+}
 model CompanyJoinRequest {
     id        String     @id @default(cuid())
     user      User       @relation(fields: [userId], references: [id])

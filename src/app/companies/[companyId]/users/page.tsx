@@ -37,7 +37,7 @@ const Page = ({ params }: TypeProp) => {
         <HeadingTag heading='Users' />
         {loading && <span className='loading loading-spinner '></span>}
         {/* <AddUser companyId={companyId} /> */}
-        <InvitationLetter/>
+        <InvitationLetter companyId={companyId} />
       </div>
 
       {/* ----------------------- */}
@@ -49,7 +49,7 @@ const Page = ({ params }: TypeProp) => {
 
               <th></th>
               <th>User</th>
-              <th>Recent Projs</th>
+              {/* <th>Recent Projs</th> */}
               <th>Role</th>
               <th></th>
             </tr>
@@ -79,11 +79,11 @@ const Page = ({ params }: TypeProp) => {
                       </div>
                     </div>
                   </td>
-                  <td>
+                  {/* <td>
                     Zemlak, Daniel and Leannon
                     <br />
                     <span className="badge badge-ghost badge-sm">Desktop Support Technician</span>
-                  </td>
+                  </td> */}
                   <td>
                     <CompanyMemberShipRoleModal
                       id={u.id}
@@ -102,7 +102,7 @@ const Page = ({ params }: TypeProp) => {
 
           </tbody>
           {/* foot */}
-          <tfoot>
+          {/* <tfoot>
             <tr>
               <th></th>
               <th>Name</th>
@@ -110,15 +110,15 @@ const Page = ({ params }: TypeProp) => {
               <th>Favorite Color</th>
               <th></th>
             </tr>
-          </tfoot>
+          </tfoot> */}
         </table>
       </div>
       {/* --------------------------- */}
 
-      <pre className='text-xs tracking-widest'>
+      {/* <pre className='text-xs tracking-widest'>
         compUsers:
         {JSON.stringify(compUsers, null, 10)}
-      </pre>
+      </pre> */}
 
     </div>
   )

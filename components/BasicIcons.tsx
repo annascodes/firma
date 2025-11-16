@@ -54,12 +54,7 @@ import { FiPlus } from "react-icons/fi";
 import { TbUsersGroup } from "react-icons/tb";
 import { IoSettingsOutline } from "react-icons/io5";
 import { TbDotsVertical } from "react-icons/tb";
-
-
-
-
-
-
+import { TiUserAdd } from "react-icons/ti";
 
 
 
@@ -112,6 +107,7 @@ const labelAndIcons = {
     users: TbUsersGroup,
     settings: IoSettingsOutline,
     options: TbDotsVertical,
+    addUser: TiUserAdd,
     
 
 
