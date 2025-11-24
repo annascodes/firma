@@ -29,7 +29,7 @@ export default async function Home() {
           {
             LandingPagefeatures.map(f => {
               return (
-                <div className="carousel-item w-lg">
+                <div key={`${f.title}-carousel`} className="carousel-item w-lg">
                   <img
                     src={f.img}
                     className=" rounded-box object-cover" />
