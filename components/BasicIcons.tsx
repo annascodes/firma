@@ -55,6 +55,10 @@ import { TbUsersGroup } from "react-icons/tb";
 import { IoSettingsOutline } from "react-icons/io5";
 import { TbDotsVertical } from "react-icons/tb";
 import { TiUserAdd } from "react-icons/ti";
+import { PiHandshake } from "react-icons/pi";
+import { LuHandshake } from "react-icons/lu";
+
+
 
 
 
@@ -108,6 +112,7 @@ const labelAndIcons = {
     settings: IoSettingsOutline,
     options: TbDotsVertical,
     addUser: TiUserAdd,
+    handShake: LuHandshake,
     
 
 

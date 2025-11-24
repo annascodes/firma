@@ -19,16 +19,39 @@ export default async function Home() {
   return (
     <div className="">
 
-      
+
       {/* <ImgScroll/> */}
       <Hero />
+
+
+      <div className="flex justify-center">
+        <div className="carousel carousel-center bg-neutral rounded-box max-w-3xl mx-auto border-0 border-yellow-300 space-x-4 p-4">
+          {
+            LandingPagefeatures.map(f => {
+              return (
+                <div className="carousel-item w-lg">
+                  <img
+                    src={f.img}
+                    className=" rounded-box object-cover" />
+                </div>
+              )
+            })
+          }
+
+
+        </div>
+      </div>
 
       <Features />
 
 
 
 
-      <BasicIcons label='info' showFullLog={true} />
+
+
+
+
+      {/* <BasicIcons label='info' showFullLog={true} /> */}
 
       {/* <pre className=" text-xs tracking-widest">
         {JSON.stringify(user, null, 10)}

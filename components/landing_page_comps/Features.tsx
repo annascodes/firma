@@ -1,34 +1,67 @@
+import BasicIcons from 'components/BasicIcons'
 import { LandingPagefeatures } from 'lib/hardData'
 import React from 'react'
+
+
+type FeatureIcon = 'plus' | 'company' | 'handShake' | 'department' | 'project' | 'task';
+
 const Features = () => {
+    const featureIcons: FeatureIcon[][] = [
+        ['company'],
+        ['handShake'],
+        ['department', 'project'],
+        ['task']
+    ]
 
     return (
-        <div>
-            {/* <div className='md:w-6xl mx-auto '>
-                <h1 className='md:text-4xl text-2xl font-semibold mb-2'>Features</h1>
-            </div> */}
-              <h1 className='md:text-4xl text-2xl font-semibold mb-2'>Features</h1>
-            <div className="flex items-center justify-center flex-wrap gap-2 mb-5 ">
-                {LandingPagefeatures.map((f, i) => (
-                    <div key={i} className="h-96 duration-500  card w-96 shadow-sm border-dashed border-0 bg-stone-200">
-                        <div className="card-body">
-                            <h2 className="card-title">{f.title}</h2>
-                            <p>
-                                {f.desc}
-                            </p>
-                        </div>
-                        <figure className='border-0 border-red-500 rounded-2xl m-2  h-52'>
-                            <img
-                                src={f.img}
-                                className='w-full h-full object-cover rounded-xl'
-                                alt="Shoes"
-                            />
-                        </figure>
-                    </div>
-                ))}
+       <div className='h-svh flex justify-center items-center'>
+         <div>
+           
+            <h1 className="text-5xl text-center font-extrabold mb-6  "> Features</h1>
+            <div className="flex items-center gap-3 flex-wrap justify-center">
+                {LandingPagefeatures.map((f, indx) => {
+                    return (
+                        <div key={f.title} className="card bg-base-100  w-96 shadow-xl">
 
+                            {/* <div>
+                                    {featureIcons.map((iList, outerIndex) => (
+                                        <div key={outerIndex}>
+                                            {iList.map((icon, innerIndex) => {
+                                                // const fIcon = icon as ''
+                                                return(
+                                                <div key={innerIndex}>
+                                                    <BasicIcons label={icon} />
+                                                </div>
+                                            )
+                                            })}
+                                        </div>
+                                    ))}
+                                </div>
+  */}
+
+
+                            <div className="card-body border-0 py-2 items-center text-center">
+                                <div className='border-0  p-2 flex items-center gap-5 justify-center '>
+                                    {featureIcons[indx].map((icon, outerindex) =>
+                                    (
+                                        <div key={outerindex}>
+                                            <BasicIcons label={icon} size='text-3xl' />
+                                        </div>
+                                    )
+                                    )}
+                                </div>
+                                <h2 className="card-title">{f.title}</h2>
+                                <p>{f.desc}</p>
+                                <div className="card-actions">
+                                    {/* <button className="btn btn-outline btn-neutral">Buy Now</button> */}
+                                </div>
+                            </div>
+                        </div>
+                    )
+                })}
             </div>
         </div>
+       </div>
     )
 }
 

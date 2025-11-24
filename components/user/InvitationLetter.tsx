@@ -121,7 +121,7 @@ const InvitationLetter = ({ companyId }: PropType) => {
                                                     <textarea defaultValue={msg} className="textarea w-full h-24" placeholder="Write..."></textarea>
                                                     {/* <div className="label">Optional</div> */}
                                                 </fieldset>
-                                                <button onClick={() => handleSendInvitation(u.id)} className=' my-1 btn btn-outline btn-neutral border-none text-xs tracking-widest   w-full flex items-center gap-2'>
+                                                <button onClick={() => handleSendInvitation(u.id)} className=' -1 btn btn-outline btn-neutral border-none text-xs tracking-widest   w-full flex items-center gap-2'>
                                                     <BasicIcons label='send' />
                                                     {InvitationLoading
                                                         ? <span className='loading loading-dots loading-sm'></span>

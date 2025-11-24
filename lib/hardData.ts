@@ -28,8 +28,15 @@ export const companyMembershipRoles = ['OWNER',
 ];
 
 export const LandingPagefeatures = [
-        { title: 'Make you own company', desc: 'You can create your own company', img: 'https://yaqmgjjvcaymp21r.public.blob.vercel-storage.com/create_company-LKI2RaTtW3A6LqRLfnPLTJWpLYzChp.PNG' },
+        { title: 'Make you own company', desc: 'You can create your own company. Your business needs a manager.', img: 'https://yaqmgjjvcaymp21r.public.blob.vercel-storage.com/create_company-LKI2RaTtW3A6LqRLfnPLTJWpLYzChp.PNG' },
         { title: 'Join an existing company', desc: 'You can join any existing company just by sending them request to join.', img: 'https://yaqmgjjvcaymp21r.public.blob.vercel-storage.com/join_company-WfooN85mPDBvmUERca2gOSVPH47w2B.PNG' },
         { title: 'Departments, Project and tasks.', desc: 'Each company can contain multiple departments , projects as well as tasks.', img: 'https://yaqmgjjvcaymp21r.public.blob.vercel-storage.com/departs_projects_tasks-hTCUD4VA5z6mYlXpFjPBXJKGEk3cPm.PNG' },
-        { title: 'Task modal with attachments and other details', desc: 'Task modal has details like priority, status , dates , attachments and much more.', img: 'https://yaqmgjjvcaymp21r.public.blob.vercel-storage.com/task_modal-ivvcSIalbuUoS2NuXVxajp74dH2kr6.PNG' },
+        { title: 'Task modal with details', desc: 'Task modal has details like priority, status , dates , attachments and much more.', img: 'https://yaqmgjjvcaymp21r.public.blob.vercel-storage.com/task_modal-ivvcSIalbuUoS2NuXVxajp74dH2kr6.PNG' },
     ]
+
+export const Illustrations = [
+  'https://i.pinimg.com/736x/10/ac/20/10ac20ef10b362a564eb2a841397c2df.jpg',
+  'https://i.pinimg.com/736x/7a/c9/7c/7ac97ce859912fe9b8d26c202360813b.jpg',
+  'https://i.pinimg.com/736x/a8/50/6f/a8506f7fe7260d34c2ccd5ef2d775778.jpg',
+
+]

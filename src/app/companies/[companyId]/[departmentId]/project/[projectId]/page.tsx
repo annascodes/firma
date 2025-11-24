@@ -17,35 +17,35 @@ import FullProjectPage from 'components/project/FullProjectPage';
 type PropType = {
     params: Promise<{ projectId: string }>
 }
-type TaskWithRelations = Task & {
-    assignee: User
-}
+// type TaskWithRelations = Task & {
+//     assignee: User
+// }
 
-type ProjectWithRelations = Project & {
-    company: Company;
-    department: Department;
-    tasks: TaskWithRelations[];
-}
+// type ProjectWithRelations = Project & {
+//     company: Company;
+//     department: Department;
+//     tasks: TaskWithRelations[];
+// }
 
 const Page = ({ params }: PropType) => {
     const { projectId } = use(params);
-    const [project, setProject] = useState<ProjectWithRelations | null>(null);
-    const [tasks, setTasks] = useState<TaskWithRelations[]>([])
-    const [view, setView] = useState('listView')
-    const { request: reqProject, data: reqData, loading, error } = useApiReq<ProjectWithRelations>()
-    useEffect(() => {
-        reqProject(`/api/project/${projectId}`)
-    }, [])
-    useEffect(() => {
-        if (reqData) {
-            setProject(reqData)
-            setTasks(reqData.tasks)
-        }
-    }, [reqData])
+    // const [project, setProject] = useState<ProjectWithRelations | null>(null);
+    // const [tasks, setTasks] = useState<TaskWithRelations[]>([])
+    // const [view, setView] = useState('listView')
+    // const { request: reqProject, data: reqData, loading, error } = useApiReq<ProjectWithRelations>()
+    // useEffect(() => {
+    //     reqProject(`/api/project/${projectId}`)
+    // }, [])
+    // useEffect(() => {
+    //     if (reqData) {
+    //         setProject(reqData)
+    //         setTasks(reqData.tasks)
+    //     }
+    // }, [reqData])
 
-    const handleNewlyAddedTask = (newTask: TaskWithRelations) => {
-        setTasks([newTask, ...tasks])
-    }
+    // const handleNewlyAddedTask = (newTask: TaskWithRelations) => {
+    //     setTasks([newTask, ...tasks])
+    // }
     return (
         <div>
 
