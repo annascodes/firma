@@ -21,7 +21,7 @@ const Drawer = ({company,handleAddDepart, handleSetData}:PropType) => {
         <div>
             <div className="drawer">
                 <input id="my-drawer-1" type="checkbox" className="drawer-toggle" />
-                <div className="drawer-content">
+                <div className="drawer-content fixed top-20 z-10">
                     {/* Page content here */}
                     <label htmlFor="my-drawer-1" className="btn drawer-button">
                         <BasicIcons label='sidebar' />
