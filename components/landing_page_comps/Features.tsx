@@ -14,7 +14,7 @@ const Features = () => {
     ]
 
     return (
-       <div className='h-svh flex justify-center items-center'>
+       <div className='md:h-svh flex justify-center items-center'>
          <div>
            
             <h1 className="text-5xl text-center font-extrabold mb-6  "> Features</h1>
